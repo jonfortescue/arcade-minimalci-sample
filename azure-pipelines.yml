@@ -36,6 +36,10 @@ phases:
       name: Build
       displayName: Build
       condition: succeeded()
+    - task: DotNetCoreInstaller@0
+      inputs:
+        packageType: 'sdk'
+        version: 2.1.403
     - template: ../steps/helix-publish.yml
       parameters:
         HelixSource: pr/jonfortescue/test
@@ -110,6 +114,10 @@ phases:
       name: Build
       displayName: Build
       condition: succeeded()
+    - task: DotNetCoreInstaller@0
+      inputs:
+        packageType: 'sdk'
+        version: 2.1.403
     - template: ../steps/helix-publish.yml
       parameters:
         HelixSource: pr/jonfortescue/test
