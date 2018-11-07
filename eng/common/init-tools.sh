@@ -70,6 +70,7 @@ function InitializeDotNetCli {
   fi
 
   build_driver="$dotnet_root/dotnet"
+  echo "##vso[task.pathprepend]$BUILD_SOURCESDIRECTORY/.dotnet"
 }
 
 function InstallDotNetSdk {
