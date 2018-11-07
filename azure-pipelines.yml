@@ -36,15 +36,7 @@ phases:
       name: Build
       displayName: Build
       condition: succeeded()
-    - task: PublishBuildArtifacts@1
-      displayName: Publish Logs to VSTS
-      inputs:
-        PathtoPublish: '$(Build.SourcesDirectory)/artifacts/log/$(_BuildConfig)'
-        PublishLocation: Container
-        ArtifactName: $(Agent.Os)_$(Agent.JobName)
-      continueOnError: true
-      condition: always()
-    - template: eng\common\templates\steps\helix-publish.yml
+    - template: ../steps/helix-publish.yml
       parameters:
         HelixSource: pr/jonfortescue/test
         HelixType: minimalci/tests
@@ -56,6 +48,14 @@ phases:
         DotNetCliPackageType: sdk
         DotNetCliVersion: 2.1.403
         EnableXUnitReporter: true
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Logs to VSTS
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)/artifacts/log/$(_BuildConfig)'
+        PublishLocation: Container
+        ArtifactName: $(Agent.Os)_$(Agent.JobName)
+      continueOnError: true
+      condition: always()
     variables:
       _HelixBuildConfig: $(_BuildConfig)
 
@@ -110,6 +110,18 @@ phases:
       name: Build
       displayName: Build
       condition: succeeded()
+    - template: ../steps/helix-publish.yml
+      parameters:
+        HelixSource: pr/jonfortescue/test
+        HelixType: minimalci/tests
+        HelixTargetQueues: Debian.87.Amd64.Open
+        HelixAccessToken: $(BotAccount-dotnet-github-anon-kaonashi-bot-helix-token)
+        WorkItemDirectory: $(Build.SourcesDirectory)\HelloTests
+        WorkItemCommand: dotnet test
+        IncludeDotNetCli: true
+        DotNetCliPackageType: sdk
+        DotNetCliVersion: 2.1.403
+        EnableXUnitReporter: true
     - task: PublishBuildArtifacts@1
       displayName: Publish Logs to VSTS
       inputs:
