@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27912.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{0D23A41B-2626-4703-9E4A-87C07F69B0B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloTests", "HelloTests\HelloTests.csproj", "{6BD2B121-CAB1-42F2-83A6-82A0F51E6B37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
